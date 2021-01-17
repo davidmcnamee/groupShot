@@ -2,6 +2,7 @@ import { renderToCanvas } from './bodypix';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { filters } from './filter';
+import { saveImg } from './save';
 
 function handleCallStream({ call, setPeers, setOrder }) {
   call.on('stream', stream => {
@@ -42,7 +43,7 @@ function handleConnData({ conn, peers, peersRef, setBackground, setOrder, setFil
     // console.log('RECEIVED DATA: ', JSON.stringify(data));
     // when that data is a segmentation
     if(data.type === "segmentations") {
-      renderToCanvas(peersRef.current[conn.peer].canvas, data.segmentations, peersRef.current[conn.peer].video, peersRef.current[conn.peer].setFilterComps, filterRef);
+      // renderToCanvas(peersRef.current[conn.peer].canvas, data.segmentations, peersRef.current[conn.peer].video, peersRef.current[conn.peer].setFilterComps, filterRef);
     }
     if(data.type === 'background') {
       setBackground(data.url);
@@ -55,13 +56,8 @@ function handleConnData({ conn, peers, peersRef, setBackground, setOrder, setFil
     }
     if(data.type === 'photo') {
       setPhotos(photos => [...photos, data.photo])
-      localStorage.setItem(`groupshot-img-${new Date().getTime()}`, data.photo);
-      toast.info(`Someone in your group took a photo!`)
-      // var link = document.createElement('a');
-      // link.download = `groupshot-${new Date().getTime()}.jpg`;
-      // link.href = data.photo;
-      // link.click();
-      // link.remove();
+      toast.done(`Someone in your group took a photo! Click on 'Your Photos' to view or download.`)
+      saveImg(data.photo);
     }
     if(data.type === 'offset') {
       setOffsets(offsets => (

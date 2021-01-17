@@ -53,6 +53,7 @@ const Container = styled.div`
   width: 500px; // needs to be smaller for mobile
   padding: 1.5em;
   transition: right 0.5s ease-in;
+  overflow: scroll;
 `
 
 const Grid = styled.div`
@@ -67,7 +68,7 @@ const Grid = styled.div`
 `
 
 const Preview = styled.img`
-  width: 250px;
+  width: 210px;
 `
 
 export default PhotosBar;

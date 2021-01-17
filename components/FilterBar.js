@@ -8,7 +8,7 @@ const FilterBar = ({ peers, peersRef, setFilter, isActive, setActive }) => {
   const onClick = (filter) => {
     setFilter(filter);
     Object.values(peersRef.current).filter(p => p.conn).forEach(p => {
-      p.conn.send(filter.id);
+      p.conn.send({type: 'filter', filter: filter.id});
     });
   }
 
@@ -63,6 +63,7 @@ const Container = styled.div`
   width: 500px; // needs to be smaller for mobile
   padding: 1.5em;
   transition: right 0.5s ease-in;
+  overflow: scroll;
 `
 
 const Grid = styled.div`
@@ -77,7 +78,7 @@ const Grid = styled.div`
 `
 
 const Preview = styled.img`
-  width: 230px;
+  width: 210px;
 `
 
 export default FilterBar;
