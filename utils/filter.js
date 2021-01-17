@@ -15,10 +15,10 @@ export const filters = {
         return keypoints.filter(p => p.part === 'leftEye' || p.part === 'rightEye');
       })));
     },
-    render: ({filterComps, scaleFactor, zIndex}) => {
+    render: ({filterComps, scaleFactor, zIndex, offset}) => {
       return filterComps.map((point, idx) => {
         return (
-          <LottieHeart key={idx} x={point.position.x * scaleFactor} y={point.position.y * scaleFactor} zIndex={zIndex}/>
+          <LottieHeart key={idx} x={(offset?.x ?? 0) + point.position.x * scaleFactor} y={point.position.y * scaleFactor} zIndex={zIndex}/>
         );
       })
     }
@@ -61,13 +61,13 @@ export const filters = {
         return keypoints.filter(p => p.part === 'leftEye' || p.part === 'rightEye');
       })));
     },
-    render: ({filterComps, scaleFactor, zIndex}) => {
+    render: ({filterComps, scaleFactor, zIndex, offset}) => {
       return filterComps.map((point, idx) => {
         return (
-          <LottieFire key={idx} x={point.position.x * scaleFactor} y={point.position.y * scaleFactor} zIndex={zIndex}/>
+          <LottieFire key={idx} x={(offset?.x ?? 0) + point.position.x * scaleFactor} y={point.position.y * scaleFactor} zIndex={zIndex}/>
         );
       })
-    }
+    },
   },
 };
 

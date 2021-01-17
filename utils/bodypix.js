@@ -17,6 +17,7 @@ export const firstLoadPromise = new Promise(resolve => {
 export async function getSegmentation(video) {
   const net = await netPromise;
   const segmentations = await net.segmentMultiPerson(video, {
+    flipHorizontal: true,
     internalResolution: 'medium', // lower is faster
     segmentationThreshold: 0.5,
     maxDetections: 3, // TODO: related to multiple people in same feed
@@ -90,14 +91,14 @@ function loop(id) {
     console.log('got segmentations for id: ', id);
     renderToCanvas(canvas, segmentations, video, setFilterComps, filterRef);
     // send out segmentations to everyone
-    if(isSelf) {
-      console.log('sending segmentations to ', Object.values(peersRef.current).filter(p => p.conn).length, ' people');
-      Object.values(peersRef.current).filter(p => p.conn).forEach(({ conn }) => {
-        conn.send({
-          type: 'segmentations',
-          segmentations
-        });
-      });
-    }
+    // if(isSelf) {
+    //   console.log('sending segmentations to ', Object.values(peersRef.current).filter(p => p.conn).length, ' people');
+    //   Object.values(peersRef.current).filter(p => p.conn).forEach(({ conn }) => {
+    //     conn.send({
+    //       type: 'segmentations',
+    //       segmentations
+    //     });
+    //   });
+    // }
   });
 }

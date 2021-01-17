@@ -11,7 +11,7 @@ const Canvas = ({ id, refs, peersRef, data, setVideoSizes, scaleFactor, isSelf, 
   console.log('rendering canvas with stream: ', data.stream);
   function onLoadedData() {
     console.log('loading data for id: ', id);
-    if(isSelf) startLoop(id, {curPeer:data, peerRef: refs, peersRef, filterRef});
+    startLoop(id, {curPeer:data, peerRef: refs, peersRef, filterRef});
   }
   useEffect(() => {
     const video = refs.video;
@@ -52,7 +52,7 @@ const Canvas = ({ id, refs, peersRef, data, setVideoSizes, scaleFactor, isSelf, 
   return (
     <>
       <StyledCanvas ref={obj => refs.canvas = obj} width={refs.video?.width} height={refs.video?.height} outsideWidth={canvasWidth} outsideHeight={canvasHeight} offset={offset} order={order}/>
-      {filter && filter.render({filterComps, zIndex: order === undefined ? 500 : 501+order, scaleFactor, backgroundRef})}
+      {filter && filter.render({filterComps, zIndex: order === undefined ? 500 : 501+order, scaleFactor, backgroundRef, offset})}
       {ReactDOM.createPortal(<StyledVideo ref={obj => refs.video = obj} onLoadedData={onLoadedData} autoPlay />, document.body)}
     </>
   )

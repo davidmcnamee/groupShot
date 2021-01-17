@@ -10,6 +10,7 @@ import { handleError } from '../utils/error';
 import debounce from 'lodash/debounce';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { saveImg } from '../utils/save';
 
 const ControlBar = ({ myId, peers, peersRef, videoSizes, backgroundRef, setBackgroundBarActive, setFilterBarActive, setPhotosBarActive, offsets, setOffsets, order, setOrder, setPhotos }) => {
   const [isActive, setActive] = useState(true);
@@ -96,22 +97,16 @@ const ControlBar = ({ myId, peers, peersRef, videoSizes, backgroundRef, setBackg
           });
 
           const dataUrl = canvas.toDataURL();
-          localStorage.setItem(`groupshot-img-${new Date().getTime()}`, dataUrl);
+          canvas.remove();
           setPhotos(photos => [...photos, dataUrl]);
-          toast.info(`Photo Saved. Click on 'Your Photos' to view or download.`);
-          console.log('conns: ', Object.values(peersRef.current).filter(p => p.conn));
+          toast.done(`Photo Saved. Click on 'Your Photos' to view or download.`);
           Object.values(peersRef.current).filter(p => p.conn).forEach(peer => {
             peer.conn.send({
               type: 'photo',
               photo: dataUrl
             })
           });
-          // var link = document.createElement('a');
-          // link.download = `groupshot-${new Date().getTime()}.jpg`;
-          // link.href = dataUrl;
-          // link.click();
-          // link.remove();
-          canvas.remove();
+          saveImg(dataUrl);
         }}/>
       </Section>
       <Section>
