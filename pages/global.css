@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Now";
+  src: url("/fonts/Now/Now-Regular.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Now";
+  src: url("/fonts/Now/Now-Medium.otf");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+}
+
+button {
+  border: none;
+  padding: 0.5em 1em;
+}
+
+* {
+  font-family: "Now";
+  box-sizing: border-box;
+  outline: none;
+}

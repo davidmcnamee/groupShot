@@ -1,0 +1,42 @@
+{
+  "name": "groupshot",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "rm -rf ./build && cross-env NODE_ENV=production next build",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "deploy": "yarn build && gcloud app deploy --quiet"
+  },
+  "dependencies": {
+    "@tensorflow-models/body-pix": "^2.0.5",
+    "@tensorflow/tfjs": "^2.8.4",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.11.12",
+    "next": "latest",
+    "peer": "^0.6.1",
+    "peerjs": "^1.3.1",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-hook-form": "^6.14.1",
+    "react-is": "^16.8.0",
+    "react-lottie": "^1.2.3",
+    "react-spinners": "^0.10.4",
+    "react-toastify": "^6.2.0",
+    "recoil": "^0.1.2",
+    "styled-components": "^5.0.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "license": "MIT"
+}
