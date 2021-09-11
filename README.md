@@ -5,6 +5,6 @@ Try it out at ~~[https://groupshot.xyz](https://groupshot.xyz)~~ (deprecated, bu
 
 
 ## winner of hackthenorth2020++!! 🥳
-https://devpost.com/software/groupshot
+## see the post here: https://devpost.com/software/groupshot
 
 
