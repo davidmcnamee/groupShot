@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: groupshot-service
+  labels:
+    name: groupshot-service
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+    - name: https
+      port: 443
+      targetPort: 3000
+  selector:
+    name: groupshot-pod
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: groupshot-deployment
+spec:
+  selector:
+    matchLabels:
+      name: groupshot-pod
+  replicas: 1
+  template:
+    metadata:
+      name: groupshot-pod
+      labels:
+        name: groupshot-pod
+    spec:
+      containers:
+        - name: groupshot-container
+          image: davidmc1/groupshot-image
+          ports:
+            - containerPort: 3000
+          resources:
+            limits: {}
+          envFrom:
+            - secretRef: { name: groupshot-secrets }

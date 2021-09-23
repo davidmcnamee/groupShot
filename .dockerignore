@@ -1,0 +1,8 @@
+
+.dockerignore
+Dockerfile
+k8s
+node_modules
+build
+.env.development
+

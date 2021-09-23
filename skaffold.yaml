@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta22
+kind: Config
+metadata:
+  name: groupshot-skaffold
+build:
+  artifacts:
+  - image: davidmc1/groupshot-image
+    context: .
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/groupshot.yaml
+    - k8s/secrets.yaml
+

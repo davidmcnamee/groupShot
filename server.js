@@ -4,6 +4,7 @@ require('dotenv').config({
     ? path.resolve(process.cwd(), '.env.production') 
     : path.resolve(process.cwd(), '.env.development')
 });
+console.log('required dotenv')
 require('./models/database');
 require('express-async-errors');
 const express = require('express')

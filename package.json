@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "node server.js",
-    "build": "rm -rf ./build && cross-env NODE_ENV=production next build",
+    "build": "cross-env NODE_ENV=production next build",
     "start": "cross-env NODE_ENV=production node server.js",
     "deploy": "yarn build && gcloud app deploy --quiet"
   },

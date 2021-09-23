@@ -1,6 +1,6 @@
 # groupShot
 
-Try it out at ~~[https://groupshot.xyz](https://groupshot.xyz)~~ (deprecated, but may put back online soon)
+Try it out at [https://groupshot.xyz](https://groupshot.xyz)
 
 
 
