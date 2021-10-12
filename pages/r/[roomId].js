@@ -75,6 +75,7 @@ function Room() {
   console.log('rendering a total of', Object.values(peersRef.current).length, ' people', JSON.stringify(Object.entries(peersRef.current).map(([id, peer]) => [id, Object.keys(peer)])));
   return (
     <CanvasContainer id="canvas-container">
+      <HttpNotice>Note: This app won't work if connected from an HTTP url, you must be connected using HTTPS!</HttpNotice>
       <BackgroundImg src={background} ref={backgroundRef}/>
       {Object.keys(peers).map(id => {
         if(!peersRef.current[id]) peersRef.current[id] = {};
@@ -90,6 +91,15 @@ function Room() {
     </CanvasContainer>
   )
 }
+
+const HttpNotice = styled.p`
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  color: red;
+  font-weight: bold;
+  z-index: 9999999;
+`
 
 const BackgroundImg = styled.img`
   height: 100vh;
